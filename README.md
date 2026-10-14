@@ -39,7 +39,7 @@ Vivaldi： The Four Seasons/
 - For YouTube: [yt-dlp-ejs](https://github.com/yt-dlp/ejs) and a JavaScript runtime, either
   [deno](https://deno.land) or Node.js. See [JavaScript runtimes](#javascript-runtimes).
 
-On Fedora:
+On Fedora, install the dependencies as packages first, so pip doesn't download its own copies:
 
 ```bash
 sudo dnf install yt-dlp python3-mutagen
@@ -50,10 +50,40 @@ so nothing else is needed for YouTube.
 
 For ffmpeg, use either the full `ffmpeg` from RPM Fusion or Fedora's `ffmpeg-free`.
 
+## Installation
+
+Both methods install a `partita` command into `~/.local/bin`, which must be on your `PATH` (it is
+by default on Fedora).
+
+### Normal install
+
+```bash
+pip install --user https://github.com/tjanez/partita/archive/master.tar.gz
+```
+
+You can replace `master` with any commit SHA, branch name or tag name partita's GitHub repository.
+
+This copies partita into your Python user directory.
+To update, pull the latest changes and run
+`pip install --user https://github.com/tjanez/partita/archive/master.tar.gz` again.
+
+### Development install
+
+```bash
+git clone https://github.com/tjanez/partita.git
+cd partita
+pip install --user --editable .
+```
+
+The `partita` command then runs `partita.py` straight from the clone, so your changes take effect
+without reinstalling. Keep the clone where it is.
+
+To remove either install, run `pip uninstall partita`.
+
 ## Usage
 
 ```bash
-./partita.py 'https://www.youtube.com/watch?v=VIDEO_ID' -o ~/Music
+partita 'https://www.youtube.com/watch?v=VIDEO_ID' -o ~/Music
 ```
 
 | Option | Description |
