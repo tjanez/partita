@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "partita"
+version = "0.1.0"
+description = "Download YouTube audio, split it by chapters and tag each part."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+dependencies = [
+    # Using the 'default' extra also pulls in yt-dlp-ejs, which provides solvers
+    # for YouTube's JavaScript challenges.
+    "yt-dlp[default]",
+    "mutagen",
+]
+
+[project.scripts]
+partita = "partita:main"
+
+[tool.setuptools]
+py-modules = ["partita"]
